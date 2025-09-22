@@ -1,0 +1,22 @@
+SALUDO
+Este flujo debe activarse cuando el usuario utiliza frases de saludo o despedida, o cualquier interaccion de entrada o salida de una conversacion. Detecta intenciones relacionadas con iniciar o cerrar una interaccion de forma cordial. 
+
+Ejemplos de intenciones:
+"Hola"
+"Chau"
+"Gracias"
+"Nos vemos"
+Criterio:
+El usuario está iniciando o finalizacion una conversacion, o realiza una interaccion cordial que puede ser interpretada como
+
+FAQ
+Este flujo se activa cuando el usuario tiene una pregunta general o una duda que requiere una respuesta generada por la inteligencia artificial (ChatGPT). Detecta Intenciones de consulta de informacion o preguntas abiertas.
+
+Ejemplos de intenciones:
+"¿Cual es la distancia a la luna?"
+"¿Cuanto es 2x2?"
+"¿Como se dice 'hola' en frances?"
+"¿Que dia es hoy?"
+Criterio:
+El usuario busca una respuesta especifica o una pregunta factual o de conocimiento general, o una respuesta basada en la comprension y generacion de lenguaje por la IA.
+

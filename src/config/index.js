@@ -9,4 +9,7 @@ export const config = {
     numberId: process.env.numberId,
     verifyToken: process.env.verifyToken,
     version: "v20.0",
+    // OpenAI
+    openai_apikey: process.env.openai_apikey,
+    model: process.env.model,
 };
