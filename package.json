@@ -1,13 +1,14 @@
 {
   "name": "base-bailey-json",
   "version": "1.0.0",
-  "description": "",
+  "description": "WhatsApp bot with AI capabilities using Baileys and OpenAI",
   "main": "src/app.js",
   "type": "module",
   "scripts": {
     "lint": "eslint . --no-ignore",
     "dev": "npm run lint && nodemon ./src/app.js",
-    "start": "node ./src/app.js"
+    "start": "node ./src/app.js",
+    "start:prod": "NODE_ENV=production node ./src/app.js"
   },
   "keywords": [],
   "dependencies": {
