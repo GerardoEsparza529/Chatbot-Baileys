@@ -1,8 +1,9 @@
-import { chat } from "./chatgpt.js";
+import { chat } from "./aiService.js";
 
 /**
- * Servicio de detección de intenciones usando ChatGPT
+ * Servicio de detección de intenciones usando IA
  * Alternativa a @builderbot-plugins/langchain compatible con Windows
+ * Ahora soporta OpenAI y Google Gemini
  */
 export const detectIntention = async (userMessage, promptDetected) => {
   try {

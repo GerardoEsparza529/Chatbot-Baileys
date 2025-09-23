@@ -3,6 +3,7 @@ import { MemoryDB as Database } from '@builderbot/bot';
 import templates from './templates/index.js';
 import { providerMeta, providerBaileys } from './provider/index.js';
 import { config } from './config/index.js';
+import { aiService } from './services/aiService.js';
 
 const PORT = config.PORT;
 
@@ -10,13 +11,26 @@ const main = async () => {
     try {
         console.log('🚀 Iniciando WhatsApp AI Bot...');
         
-        // Validar configuración crítica
-        if (!config.openai_apikey) {
-            throw new Error('❌ OPENAI_APIKEY no configurado en .env');
-        }
-        
+        // Validar configuración de WhatsApp provider
         if (!config.provider) {
             throw new Error('❌ PROVIDER no configurado en .env');
+        }
+
+        // Validar configuración de IA
+        const aiInfo = aiService.getProviderInfo();
+        console.log(`🤖 Proveedor de IA seleccionado: ${aiInfo.current.toUpperCase()}`);
+        console.log(`📊 Modelo: ${aiInfo.model}`);
+        
+        if (!aiInfo.openai_available && !aiInfo.gemini_available) {
+            throw new Error('❌ No hay proveedores de IA configurados. Configura OPENAI_APIKEY o GEMINI_APIKEY en .env');
+        }
+
+        if (aiInfo.current === 'openai' && !aiInfo.openai_available) {
+            throw new Error('❌ OpenAI seleccionado pero OPENAI_APIKEY no configurado en .env');
+        }
+
+        if (aiInfo.current === 'gemini' && !aiInfo.gemini_available) {
+            throw new Error('❌ Gemini seleccionado pero GEMINI_APIKEY no configurado en .env');
         }
 
         const adapterFlow = templates;
@@ -48,6 +62,13 @@ const main = async () => {
         httpServer(+PORT);
         
         console.log('✅ Bot iniciado exitosamente');
+        console.log(`💡 Configuración actual:`);
+        console.log(`   - WhatsApp Provider: ${config.provider}`);
+        console.log(`   - IA Provider: ${aiInfo.current}`);
+        console.log(`   - Modelo: ${aiInfo.model}`);
+        if (aiInfo.openai_available && aiInfo.gemini_available) {
+            console.log(`   - Fallback disponible: ${aiInfo.current === 'openai' ? 'Gemini' : 'OpenAI'}`);
+        }
         
     } catch (error) {
         console.error('❌ Error crítico al iniciar el bot:', error.message);

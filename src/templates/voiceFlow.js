@@ -1,9 +1,8 @@
 import { addKeyword, EVENTS } from "@builderbot/bot";
 import {downloadFile, downloadFileBaileys} from "../utils/downloader.js";
 import { config } from "../config/index.js";
-import { voice2text } from "../services/voicegpt.js";
+import { voice2text, chat } from "../services/aiService.js";
 import { removeFile } from "../utils/remover.js";
-import { chat } from "../services/chatgpt.js";
 
 const voiceFlow = addKeyword(EVENTS.VOICE_NOTE)
     .addAction(async (ctx, ctxFn) => {

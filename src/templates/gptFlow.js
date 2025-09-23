@@ -1,5 +1,5 @@
 import { addKeyword, EVENTS } from "@builderbot/bot";
-import { chat } from "../services/chatgpt.js";
+import { chat } from "../services/aiService.js";
 
 const gptFlow = addKeyword(EVENTS.ACTION)
     .addAction(async (ctx, ctxFn) => {
